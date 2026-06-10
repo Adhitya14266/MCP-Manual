@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Shield, Cloud, Monitor, BarChart2, Smartphone, GitBranch, Headphones, Activity, ChevronDown, Database, Layers, Workflow } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
@@ -33,11 +33,7 @@ interface Usecase {
 }
 
 /* ─────────────────────────────────────────────
-   BFSILZ — Tool List
-───────────────────────────────────────────── */
-
-const BFSILZ_TOOLS: { tool: string; purpose: string }[] = [
-  { tool: 'createAuthConnection', purpose: 'Create a single auth connection.' },
+   CLOUDSPEND — Tool List
   { tool: 'createAuthConnections', purpose: 'Create multiple auth connections in batch.' },
   { tool: 'createAuthService', purpose: 'Create a single auth service.' },
   { tool: 'createAuthServiceConfig', purpose: 'Create a single auth service configuration.' },
@@ -162,15 +158,8 @@ const BFSILZ_TOOLS: { tool: string; purpose: string }[] = [
   { tool: 'updateVariableGroup', purpose: 'Update a single variable group by its ID. API name cannot be changed after creation.' },
   { tool: 'updateVariableGroups', purpose: 'Update multiple variable groups in batch.' },
   { tool: 'updateVariables', purpose: 'Update multiple variables in batch.' },
-];
-
 /* ─────────────────────────────────────────────
-   BFSILZ — Common Usecases
-───────────────────────────────────────────── */
-
-const BFSILZ_USECASES: Usecase[] = [
-  {
-    id: 'data-model',
+   CLOUDSPEND — Tool List
     title: 'Building a Custom Application Data Model',
     subtitle: 'Define typed schemas, modules, and fields to structure your BFSI application data layer.',
     icon: Database,
@@ -2084,17 +2073,11 @@ function UsecasesAccordionGroup({ usecases }: { usecases: Usecase[] }) {
   );
 }
 
-function BFSILZUsecasesAccordion() {
-  return <UsecasesAccordionGroup usecases={BFSILZ_USECASES} />;
-}
-
 /* ─────────────────────────────────────────────
    About copy per service
 ───────────────────────────────────────────── */
 
 const SERVICE_ABOUT: Partial<Record<string, string>> = {
-  bfsilz:
-    "Banking, financial services, and insurance organizations operate under some of the most demanding compliance, security, and availability requirements of any industry. BFSILZ is ManageEngine's dedicated application framework for building custom ITSM and operational workflows tailored specifically to BFSI institutions, enabling teams to model data structures, define business logic through rules, and integrate external financial systems via a structured invoker-relay architecture, all while meeting the rigorous data governance and audit trail requirements that regulators demand.",
   cloudspend:
     "As organizations increasingly shift workloads to AWS, Azure, and GCP, cloud costs can spiral quickly without visibility into where spend is actually going. ManageEngine CloudSpend gives engineering and finance teams detailed, account-level insight into cloud expenditure, surfaces underutilized resources, and delivers cost optimization recommendations, making it possible to align cloud consumption with actual business value rather than discovering budget overruns at the end of the billing cycle.",
   endpointcentral:
@@ -2116,7 +2099,6 @@ const SERVICE_ABOUT: Partial<Record<string, string>> = {
 ───────────────────────────────────────────── */
 
 const SERVICES = [
-  { id: 'bfsilz',          label: 'BFSILZ',          icon: Shield },
   { id: 'cloudspend',      label: 'CloudSpend',       icon: Cloud },
   { id: 'endpointcentral', label: 'EndpointCentral',  icon: Monitor },
   { id: 'log360cloud',     label: 'Log360Cloud',      icon: BarChart2 },
@@ -2140,7 +2122,6 @@ const TABS: { id: TabId; label: string }[] = [
 ───────────────────────────────────────────── */
 
 const SERVICE_TOOLS_MAP: Record<ServiceId, { tool: string; purpose: string }[]> = {
-  bfsilz: BFSILZ_TOOLS,
   cloudspend: CLOUDSPEND_TOOLS,
   endpointcentral: ENDPOINTCENTRAL_TOOLS,
   log360cloud: LOG360CLOUD_TOOLS,
@@ -2155,10 +2136,38 @@ interface ThirdPartyServicePanelProps {
   searchQuery?: string;
 }
 
-export function ThirdPartyServicePanel({ defaultService = 'bfsilz', searchQuery = '' }: ThirdPartyServicePanelProps) {
+export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQuery = '' }: ThirdPartyServicePanelProps) {
   const [selectedService, setSelectedService] = useState<ServiceId>(defaultService);
   const [activeTab, setActiveTab] = useState<TabId>('about');
   const [collapsed, setCollapsed] = useState(false);
+  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
+  // Refs for autoscroll
+  const panelRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const activeNavItemRef = useRef<HTMLButtonElement>(null);
+
+  // Scroll content to top and active nav item into view when service changes
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => {
+      if (contentRef.current) {
+        contentRef.current.scrollTop = 0;
+      }
+      if (activeNavItemRef.current && navRef.current) {
+        activeNavItemRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [selectedService]);
 
   const q = searchQuery.trim().toLowerCase();
 
@@ -2186,10 +2195,36 @@ export function ThirdPartyServicePanel({ defaultService = 'bfsilz', searchQuery 
   const allTools = SERVICE_TOOLS_MAP[effectiveService] ?? [];
   const displayTools = q ? allTools.filter((t) => t.tool.toLowerCase().includes(q)) : allTools;
 
+  // Per-service logo overrides.
+  // `dark` is only set when a proper dark-background lockup exists.
+  // If omitted, dark mode falls back to icon + HTML label (same as light mode).
+  const SERVICE_LOGOS: Partial<Record<ServiceId, { light: string; dark?: string }>> = {
+    cloudspend: {
+      light: '/logos/CloudSpend-icon.svg',
+    },
+    endpointcentral: {
+      light: '/logos/EndpointCentral-icon.svg',
+    },
+    log360cloud: {
+      light: '/logos/Log360Cloud-icon.svg',
+    },
+    mdm: {
+      light: '/logos/MDM-icon.svg',
+    },
+    qntrl: {
+      light: '/logos/Qntrl-whiteBG.svg',
+      dark: '/logos/Qntrl-logo-lockup-darkBG.svg',
+    },
+    site24x7: {
+      light: '/logos/Site24x7-icon.svg',
+    },
+  };
+
   return (
-    <div className="flex rounded-xl border border-border bg-card overflow-hidden min-h-[480px] animate-fade-in">
+    <div ref={panelRef} className="flex rounded-xl border border-border bg-card overflow-hidden h-[calc(100vh-13rem)] animate-fade-in">
       {/* Side Panel */}
       <aside
+        ref={navRef}
         className={cn(
           'flex flex-col border-r border-border bg-muted/40 transition-all duration-300 shrink-0',
           collapsed ? 'w-12' : 'w-56'
@@ -2221,7 +2256,7 @@ export function ThirdPartyServicePanel({ defaultService = 'bfsilz', searchQuery 
         </div>
 
         {/* Service list */}
-        <nav className="flex flex-col gap-1 p-2 flex-1">
+        <nav className="flex flex-col gap-1 p-2 flex-1 overflow-y-auto">
           {filteredServices.length === 0 ? (
             !collapsed && (
               <p className="px-2 py-3 text-xs text-muted-foreground">No services match.</p>
@@ -2233,6 +2268,7 @@ export function ThirdPartyServicePanel({ defaultService = 'bfsilz', searchQuery 
               return (
                 <button
                   key={svc.id}
+                  ref={isActive ? activeNavItemRef : undefined}
                   onClick={() => setSelectedService(svc.id)}
                   aria-label={svc.label}
                   className={cn(
@@ -2242,10 +2278,29 @@ export function ThirdPartyServicePanel({ defaultService = 'bfsilz', searchQuery 
                       : 'text-foreground hover:bg-muted'
                   )}
                 >
-                  <Icon className="size-4 shrink-0" />
-                  {!collapsed && (
-                    <span className="truncate">{svc.label}</span>
-                  )}
+                  {(() => {
+                    const logos = SERVICE_LOGOS[svc.id as ServiceId];
+                    if (collapsed) {
+                      return logos ? (
+                        <img src={logos.light} alt={svc.label} className="h-5 w-5 shrink-0 object-contain" />
+                      ) : (
+                        <Icon className="size-4 shrink-0" />
+                      );
+                    }
+                    if (logos && isDark && logos.dark) {
+                      return <img src={logos.dark} alt={svc.label} className="h-5 w-auto max-w-[130px] shrink-0 object-contain" />;
+                    }
+                    return (
+                      <>
+                        {logos ? (
+                          <img src={logos.light} alt="" className="h-5 w-5 shrink-0 object-contain" />
+                        ) : (
+                          <Icon className="size-4 shrink-0" />
+                        )}
+                        <span className="truncate">{svc.label}</span>
+                      </>
+                    );
+                  })()}
                 </button>
               );
             })
@@ -2259,16 +2314,29 @@ export function ThirdPartyServicePanel({ defaultService = 'bfsilz', searchQuery 
           <p className="text-sm text-muted-foreground">No services or tools match your search.</p>
         </div>
       ) : (
-        <div className="flex-1 flex flex-col min-w-0">
+        <div ref={contentRef} className="flex-1 flex flex-col min-w-0 overflow-y-auto">
           {/* Content header */}
           <div className="px-6 py-4 border-b border-border">
             <div className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <service.icon className="size-5 text-primary" />
-              </div>
-              <div>
-                <h2 className="text-lg font-semibold leading-tight">{service.label}</h2>
-              </div>
+              {SERVICE_LOGOS[effectiveService] ? (
+                isDark && SERVICE_LOGOS[effectiveService]!.dark ? (
+                  <img src={SERVICE_LOGOS[effectiveService]!.dark} alt={service.label} className="h-9 w-auto max-w-[200px] object-contain" />
+                ) : (
+                  <>
+                    <img src={SERVICE_LOGOS[effectiveService]!.light} alt="" className="h-9 w-9 object-contain shrink-0" />
+                    <h2 className="text-lg font-semibold leading-tight">{service.label}</h2>
+                  </>
+                )
+              ) : (
+                <>
+                  <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <service.icon className="size-5 text-primary" />
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-semibold leading-tight">{service.label}</h2>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -2351,9 +2419,7 @@ export function ThirdPartyServicePanel({ defaultService = 'bfsilz', searchQuery 
               <TabsContent value="common-usecases" className="flex-1">
                 <div className="rounded-lg border border-border bg-background p-5 h-full min-h-[280px] flex flex-col gap-3">
                   <h3 className="text-base font-semibold">{service.label} — Common Usecases</h3>
-                  {effectiveService === 'bfsilz' ? (
-                    <BFSILZUsecasesAccordion />
-                  ) : effectiveService === 'cloudspend' ? (
+                  {effectiveService === 'cloudspend' ? (
                     <CloudSpendUsecasesAccordion />
                   ) : effectiveService === 'endpointcentral' ? (
                     <EndpointCentralUsecasesAccordion />

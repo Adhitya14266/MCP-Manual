@@ -30,9 +30,16 @@ export function ThirdPartyServicesPage() {
           <button
             onClick={() => navigate('/')}
             aria-label="Go to homepage"
-            className="text-base font-semibold tracking-tight shrink-0 text-foreground cursor-pointer hover:opacity-70 transition-opacity duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+            className="shrink-0 cursor-pointer hover:opacity-70 transition-opacity duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm flex items-center gap-2"
           >
-            Zoho MCP
+            {dark ? (
+              <img src="/MCP-logo-lockup-DarkBG.svg" alt="Zoho MCP" className="h-7 w-auto object-contain" />
+            ) : (
+              <>
+                <img src="/MCP-WhiteBG.svg" alt="" className="h-7 w-7 object-contain shrink-0" />
+                <span className="text-base font-semibold tracking-tight text-foreground">Zoho MCP</span>
+              </>
+            )}
           </button>
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
@@ -80,7 +87,7 @@ export function ThirdPartyServicesPage() {
 
         {/* Service Panel */}
         <section className="animate-slide-up">
-          <ThirdPartyServicePanel defaultService="bfsilz" searchQuery={searchQuery} />
+          <ThirdPartyServicePanel defaultService="cloudspend" searchQuery={searchQuery} />
         </section>
       </main>
 

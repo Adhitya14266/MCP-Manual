@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sun, Moon, ArrowRight, Layers, Wrench } from 'lucide-react';
+import { Sun, Moon, ArrowRight, Layers, Plug } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { BottomActions } from '@/components/BottomActions';
 import { MeatballMenu } from '@/components/MeatballMenu';
 
 function App() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
   const navigate = useNavigate();
 
   const handleExploreZoho = () => {
@@ -34,9 +34,16 @@ function App() {
           <button
             onClick={() => navigate('/')}
             aria-label="Go to homepage"
-            className="text-base font-semibold tracking-tight shrink-0 text-foreground cursor-pointer hover:opacity-70 transition-opacity duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+            className="shrink-0 cursor-pointer hover:opacity-70 transition-opacity duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm flex items-center gap-2"
           >
-            Zoho MCP
+            {dark ? (
+              <img src="/MCP-logo-lockup-DarkBG.svg" alt="Zoho MCP" className="h-7 w-auto object-contain" />
+            ) : (
+              <>
+                <img src="/MCP-WhiteBG.svg" alt="" className="h-7 w-7 object-contain shrink-0" />
+                <span className="text-base font-semibold tracking-tight text-foreground">Zoho MCP</span>
+              </>
+            )}
           </button>
           <div className="flex-1" />
           <Button
@@ -70,12 +77,12 @@ function App() {
           <div className="flex gap-4 sm:gap-6">
             <div className="rounded-xl border border-border bg-card p-6 flex flex-col items-center justify-center gap-2 w-32 h-32 sm:w-36 sm:h-36">
               <Layers className="size-5 text-muted-foreground" />
-              <p className="text-3xl font-bold tracking-tight">45</p>
+              <p className="text-3xl font-bold tracking-tight">44</p>
               <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Services</span>
             </div>
             <div className="rounded-xl border border-border bg-card p-6 flex flex-col items-center justify-center gap-2 w-32 h-32 sm:w-36 sm:h-36">
-              <Wrench className="size-5 text-muted-foreground" />
-              <p className="text-3xl font-bold tracking-tight">5,334</p>
+              <Plug className="size-5 text-muted-foreground" />
+              <p className="text-3xl font-bold tracking-tight">5,099</p>
               <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Total Tools</span>
             </div>
           </div>
@@ -87,10 +94,12 @@ function App() {
           <Card className="hover:shadow-md transition-shadow duration-200 border-border">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-3 mb-1">
-                <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
-                  <Layers className="size-5 text-primary-foreground" />
-                </div>
-                <CardTitle className="text-xl">Zoho Service</CardTitle>
+                {dark ? (
+                  <img src="/Zoho-logo-darkBG.svg" alt="Zoho" className="h-7 w-auto max-w-[110px] object-contain rounded-sm" />
+                ) : (
+                  <img src="/Zoho-logo.svg" alt="Zoho" className="h-7 w-auto max-w-[110px] object-contain" />
+                )}
+                <CardTitle className="text-xl">Zoho Services</CardTitle>
               </div>
               <CardDescription className="text-sm leading-relaxed">
                 Discover and execute the right MCP Tools across the Zoho ecosystem.
@@ -108,7 +117,7 @@ function App() {
             <CardHeader className="pb-3">
               <div className="flex items-center gap-3 mb-1">
                 <div className="h-10 w-10 rounded-lg bg-muted flex items-center justify-center">
-                  <Wrench className="size-5 text-foreground" />
+                  <Plug className="size-5 text-foreground" />
                 </div>
                 <CardTitle className="text-xl">Third-party Service</CardTitle>
               </div>

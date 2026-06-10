@@ -9016,43 +9016,43 @@ const TOOL_COUNTS: Record<string, number> = {
 };
 
 const SERVICES = [
-  { id: 'bigin',           label: 'Bigin',            icon: Users },
-  { id: 'catalyst',        label: 'Catalyst by Zoho', icon: Zap },
-  { id: 'zoho-analytics',  label: 'Zoho Analytics',   icon: BarChart2 },
-  { id: 'zoho-apptics',    label: 'Zoho Apptics',     icon: Activity },
-  { id: 'zoho-assist',     label: 'Zoho Assist',      icon: LifeBuoy },
-  { id: 'zoho-billing',    label: 'Zoho Billing',     icon: CreditCard },
-  { id: 'zoho-bookings',   label: 'Zoho Bookings',    icon: CalendarCheck },
-  { id: 'zoho-books',      label: 'Zoho Books',       icon: BookOpen },
-  { id: 'zoho-calendar',   label: 'Zoho Calendar',    icon: Calendar },
-  { id: 'zoho-cliq',       label: 'Zoho Cliq',        icon: MessageSquare },
-  { id: 'zoho-commerce',   label: 'Zoho Commerce',    icon: ShoppingCart },
-  { id: 'zoho-creator',    label: 'Zoho Creator',     icon: Layers },
-  { id: 'zoho-crm',        label: 'Zoho CRM',         icon: Database },
-  { id: 'zoho-dataprep',   label: 'Zoho Dataprep',    icon: Filter },
-  { id: 'zoho-desk',       label: 'Zoho Desk',        icon: Headphones },
-  { id: 'zoho-expense',    label: 'Zoho Expense',     icon: Receipt },
-  { id: 'zoho-inventory',  label: 'Zoho Inventory',   icon: Package },
-  { id: 'zoho-invoice',    label: 'Zoho Invoice',     icon: FileText },
-  { id: 'zoho-learn',      label: 'Zoho Learn',       icon: GraduationCap },
-  { id: 'zoho-lens',       label: 'Zoho Lens',        icon: Camera },
-  { id: 'zoho-mail',       label: 'Zoho Mail',        icon: Mail },
-  { id: 'zoho-notebook',   label: 'Zoho Notebook',    icon: BookMarked },
-  { id: 'zoho-payments',   label: 'Zoho Payments',    icon: Wallet },
-  { id: 'zoho-payroll',    label: 'Zoho Payroll',     icon: CreditCard },
-  { id: 'zoho-people',     label: 'Zoho People',      icon: Users },
-  { id: 'zoho-pos',        label: 'Zoho POS',         icon: MapPin },
-  { id: 'zoho-projects',   label: 'Zoho Projects',    icon: FolderKanban },
-  { id: 'zoho-recruit',    label: 'Zoho Recruit',     icon: UserPlus },
-  { id: 'zoho-salesiq',    label: 'Zoho SalesIQ',     icon: MessageCircle },
-  { id: 'zoho-sheet',      label: 'Zoho Sheet',       icon: Sheet },
-  { id: 'zoho-sign',       label: 'Zoho Sign',        icon: PenLine },
-  { id: 'zoho-social',     label: 'Zoho Social',      icon: Share2 },
-  { id: 'zoho-sprints',    label: 'Zoho Sprints',     icon: GitBranch },
-  { id: 'zoho-survey',     label: 'Zoho Survey',      icon: ClipboardList },
-  { id: 'zoho-vertical',   label: 'Zoho Vertical Studio',    icon: Globe },
-  { id: 'zoho-workdrive',  label: 'Zoho Workdrive',   icon: HardDrive },
-  { id: 'zoho-writer',     label: 'Zoho Writer',      icon: PenSquare },
+  { id: 'bigin',           label: 'Bigin',                 icon: Users,         logoLight: '/logos/Bigin-whiteBG.svg',                                    logoDark: '/logos/Bigin-logo-lockup-darkBG.svg' },
+  { id: 'catalyst',        label: 'Catalyst by Zoho',      icon: Zap,           logoLight: '/logos/Catalyst-whiteBG.svg',                                 logoDark: '/logos/Catalyst-logo-lockup-darkBG.svg' },
+  { id: 'zoho-analytics',  label: 'Zoho Analytics',        icon: BarChart2,     logoLight: '/logos/Analytics-whiteBG.svg',                                logoDark: '/logos/Analytics-logo-lockup-darkBG.svg' },
+  { id: 'zoho-apptics',    label: 'Zoho Apptics',          icon: Activity,      logoLight: '/logos/Apptics-whiteBG.svg',                                  logoDark: '/logos/Apptics-logo-lockup-darkBG.svg' },
+  { id: 'zoho-assist',     label: 'Zoho Assist',           icon: LifeBuoy,      logoLight: '/logos/Assist-whiteBG.svg',                                   logoDark: '/logos/Assist-logo-lockup-DarkBG.svg' },
+  { id: 'zoho-billing',    label: 'Zoho Billing',          icon: CreditCard,    logoLight: '/logos/Billing-whiteBG.svg',                                  logoDark: '/logos/Billing-logo-lockup-darkBG.svg' },
+  { id: 'zoho-bookings',   label: 'Zoho Bookings',         icon: CalendarCheck, logoLight: '/logos/Bookings-whiteBG.svg',                                 logoDark: '/logos/Bookings-logo-lockup-darkBG.svg' },
+  { id: 'zoho-books',      label: 'Zoho Books',            icon: BookOpen,      logoLight: '/logos/Books-whiteBG.svg',                                    logoDark: '/logos/Books-logo-lockup-darkBG.svg' },
+  { id: 'zoho-calendar',   label: 'Zoho Calendar',         icon: Calendar,      logoLight: '/logos/Calendar-whiteBG.svg',                                 logoDark: '/logos/Calendar-logo-lockup-darkBG.svg' },
+  { id: 'zoho-cliq',       label: 'Zoho Cliq',             icon: MessageSquare, logoLight: '/logos/Cliq-whiteBG.svg',                                     logoDark: '/logos/Cliq-logo-lockup-darkBG.svg' },
+  { id: 'zoho-commerce',   label: 'Zoho Commerce',         icon: ShoppingCart,  logoLight: '/logos/Commerce-whiteBG.svg',                                 logoDark: '/logos/Commerce-logo-lockup-darkBG.svg' },
+  { id: 'zoho-creator',    label: 'Zoho Creator',          icon: Layers,        logoLight: '/logos/Creator-whiteBG.svg',                                  logoDark: '/logos/Creator-logo-lockup-darkBG.svg' },
+  { id: 'zoho-crm',        label: 'Zoho CRM',              icon: Database,      logoLight: '/logos/CRM-whiteBG.svg',                                      logoDark: '/logos/CRM-logo-lockup-darkBG.svg' },
+  { id: 'zoho-dataprep',   label: 'Zoho Dataprep',         icon: Filter,        logoLight: '/logos/DataPrep-whiteBG.svg',                                 logoDark: '/logos/DataPrep-logo-lockup-darkBG.svg' },
+  { id: 'zoho-desk',       label: 'Zoho Desk',             icon: Headphones,    logoLight: '/logos/Desk-whiteBG.svg',                                     logoDark: '/logos/Desk-logo-lockup-darkBG.svg' },
+  { id: 'zoho-expense',    label: 'Zoho Expense',          icon: Receipt,       logoLight: '/logos/Expense-whiteBG.svg',                                  logoDark: '/logos/Expense-logo-lockup-darkBG.svg' },
+  { id: 'zoho-inventory',  label: 'Zoho Inventory',        icon: Package,       logoLight: '/logos/Inventory-whiteBG.svg',                                logoDark: '/logos/Inventory-logo-lockup-darkBG.svg' },
+  { id: 'zoho-invoice',    label: 'Zoho Invoice',          icon: FileText,      logoLight: '/logos/Invoice-whiteBG.svg',                                  logoDark: '/logos/Invoice-logo-lockup-darkBG.svg' },
+  { id: 'zoho-learn',      label: 'Zoho Learn',            icon: GraduationCap, logoLight: '/logos/Learn-whiteBG.svg',                                    logoDark: '/logos/Learn-logo-lockup-darkBG.svg' },
+  { id: 'zoho-lens',       label: 'Zoho Lens',             icon: Camera,        logoLight: '/logos/Lens-whiteBG.svg',                                     logoDark: '/logos/Lens-logo-lockup-darkBG.svg' },
+  { id: 'zoho-mail',       label: 'Zoho Mail',             icon: Mail,          logoLight: '/logos/Mail-whiteBG.svg',                                     logoDark: '/logos/Mail-logo-lockup-darkBG.svg' },
+  { id: 'zoho-notebook',   label: 'Zoho Notebook',         icon: BookMarked,    logoLight: '/logos/Notebook-whiteBG.svg',                                 logoDark: '/logos/Notebook-logo-lockup-darkBG.svg' },
+  { id: 'zoho-payments',   label: 'Zoho Payments',         icon: Wallet,        logoLight: '/logos/Payments-whiteBG.svg',                                 logoDark: '/logos/Payments-logo-lockup-darkBG.svg' },
+  { id: 'zoho-payroll',    label: 'Zoho Payroll',          icon: CreditCard,    logoLight: '/logos/Payroll-whiteBG.svg',                                  logoDark: '/logos/Payroll-logo-lockup-darkBG.svg' },
+  { id: 'zoho-people',     label: 'Zoho People',           icon: Users,         logoLight: '/logos/People-whiteBG.svg',                                   logoDark: '/logos/People-logo-lockup-darkBG.svg' },
+  { id: 'zoho-pos',        label: 'Zoho POS',              icon: MapPin,        logoLight: '/logos/POS-whiteBG.svg',                                      logoDark: '/logos/POS-logo-lockup-darkBG.svg' },
+  { id: 'zoho-projects',   label: 'Zoho Projects',         icon: FolderKanban,  logoLight: '/logos/Projects-whiteBG.svg',                                 logoDark: '/logos/Projects-logo-lockup-darkBG.svg' },
+  { id: 'zoho-recruit',    label: 'Zoho Recruit',          icon: UserPlus,      logoLight: '/logos/Recruit-whiteBG.svg',                                  logoDark: '/logos/Recruit-logo-lockup-darkBG.svg' },
+  { id: 'zoho-salesiq',    label: 'Zoho SalesIQ',          icon: MessageCircle, logoLight: '/logos/SalesIQ-whiteBG.svg',                                  logoDark: '/logos/SalesIQ-logo-lockup-darkBG.svg' },
+  { id: 'zoho-sheet',      label: 'Zoho Sheet',            icon: Sheet,         logoLight: '/logos/Sheet-whiteBG.svg',                                    logoDark: '/logos/Sheet-logo-lockup-darkBG.svg' },
+  { id: 'zoho-sign',       label: 'Zoho Sign',             icon: PenLine,       logoLight: '/logos/Sign-whiteBG.svg',                                     logoDark: '/logos/Sign-logo-lockup-darkBG.svg' },
+  { id: 'zoho-social',     label: 'Zoho Social',           icon: Share2,        logoLight: '/logos/Social-whiteBG.svg',                                   logoDark: '/logos/Social-logo-lockup-darkBG.svg' },
+  { id: 'zoho-sprints',    label: 'Zoho Sprints',          icon: GitBranch,     logoLight: '/logos/Sprints-whiteBG.svg',                                  logoDark: '/logos/Sprints-logo-lockup-darkBG.svg' },
+  { id: 'zoho-survey',     label: 'Zoho Survey',           icon: ClipboardList, logoLight: '/logos/Survey-whiteBG.svg',                                   logoDark: '/logos/Survey-logo-lockup-darkBG.svg' },
+  { id: 'zoho-vertical',   label: 'Zoho Vertical Studio',  icon: Globe,         logoLight: '/logos/Vertical%20Studio-whiteBG.svg',                        logoDark: '/logos/Vertical%20Studio-logo-lockup-darkBG.svg' },
+  { id: 'zoho-workdrive',  label: 'Zoho Workdrive',        icon: HardDrive,     logoLight: '/logos/WorkDrive-whiteBG.svg',                                logoDark: '/logos/WorkDrive-logo-lockup-darkBG.svg' },
+  { id: 'zoho-writer',     label: 'Zoho Writer',           icon: PenSquare,     logoLight: '/logos/Writer-whiteBG.svg',                                   logoDark: '/logos/Writer-logo-lockup-darkBG.svg' },
 ] as const;
 
 type ServiceId = (typeof SERVICES)[number]['id'];
@@ -9277,6 +9277,15 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
   const [selectedService, setSelectedService] = useState<ServiceId>(defaultService);
   const [activeTab, setActiveTab] = useState<TabId>('about');
   const [collapsed, setCollapsed] = useState(false);
+  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
 
   const q = searchQuery.trim().toLowerCase();
 
@@ -9304,13 +9313,13 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
   const service = (SERVICES.find((s) => s.id === selectedService) ?? SERVICES[0])!;
 
   // Refs for autoscroll
+  const panelRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const activeNavItemRef = useRef<HTMLButtonElement>(null);
 
   // Scroll content to top and active nav item into view when service changes
   useEffect(() => {
-    // Defer until after React has committed the new content to the DOM
     const raf = requestAnimationFrame(() => {
       if (contentRef.current) {
         contentRef.current.scrollTop = 0;
@@ -9328,7 +9337,7 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
   };
 
   return (
-    <div className="flex rounded-xl border border-border bg-card overflow-hidden min-h-[480px] animate-fade-in">
+    <div ref={panelRef} className="flex rounded-xl border border-border bg-card overflow-hidden h-[calc(100vh-13rem)] animate-fade-in">
       {/* Side Panel */}
       <aside
         ref={navRef}
@@ -9372,6 +9381,7 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
             filteredServices.map((svc) => {
               const Icon = svc.icon;
               const isActive = svc.id === selectedService;
+              const logoSrc = isDark ? svc.logoDark : svc.logoLight;
               return (
                 <button
                   key={svc.id}
@@ -9385,9 +9395,27 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
                       : 'text-foreground hover:bg-muted'
                   )}
                 >
-                  <Icon className="size-4 shrink-0" />
-                  {!collapsed && (
-                    <span className="truncate">{svc.label}</span>
+                  {collapsed ? (
+                    <img
+                      src={svc.logoLight}
+                      alt={svc.label}
+                      className="h-5 w-5 shrink-0 object-contain"
+                    />
+                  ) : isDark ? (
+                    <img
+                      src={svc.logoDark}
+                      alt={svc.label}
+                      className="h-5 w-auto max-w-[140px] shrink-0 object-contain"
+                    />
+                  ) : (
+                    <>
+                      <img
+                        src={svc.logoLight}
+                        alt=""
+                        className="h-5 w-5 shrink-0 object-contain"
+                      />
+                      <span className="truncate">{svc.label}</span>
+                    </>
                   )}
                 </button>
               );
@@ -9400,14 +9428,22 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
       <div ref={contentRef} className="flex-1 flex flex-col min-w-0 overflow-y-auto">
         {/* Content header */}
         <div className="px-6 py-4 border-b border-border">
-          <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-              <service.icon className="size-5 text-primary" />
-            </div>
-            <div>
+          {isDark ? (
+            <img
+              src={service.logoDark}
+              alt={service.label}
+              className="h-9 w-auto max-w-[220px] object-contain"
+            />
+          ) : (
+            <div className="flex items-center gap-3">
+              <img
+                src={service.logoLight}
+                alt=""
+                className="h-9 w-9 object-contain shrink-0"
+              />
               <h2 className="text-lg font-semibold leading-tight">{service.label}</h2>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Tabs */}
